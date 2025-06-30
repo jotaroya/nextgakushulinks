@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import './globals.css';
 
 export default function Page() {
   const [tab, setTab] = useState<string>('top');
@@ -14,6 +13,7 @@ export default function Page() {
         <TabButton label="🏠 トップ" active={tab === 'top'} onClick={() => setTab('top')} />
         <TabButton label="🍊 mikan紹介" active={tab === 'mikan'} onClick={() => setTab('mikan')} />
         <TabButton label="💡 Web教材" active={tab === 'webapp'} onClick={() => setTab('webapp')} />
+        <TabButton label="✏️ Writing GPTs" active={tab === 'writing'} onClick={() => setTab('writing')} />
         <TabButton label="🔒 パス付き部屋" active={tab === 'secret'} onClick={() => setTab('secret')} />
         <TabButton label="📥 ダウンロードアプリ紹介" active={tab === 'app'} onClick={() => setTab('app')} />
         <TabButton label="🧠 カスタムGPTs" active={tab === 'gpts'} onClick={() => setTab('gpts')} />
@@ -25,6 +25,7 @@ export default function Page() {
       {tab === 'writing' && <WritingSection />}
       {tab === 'secret' && <SecretAccessSection />}
       {tab === 'app' && <DownloadAppSection />}
+      {tab === 'gpts' && <CustomGPTsSection />}
       {tab === 'webapp' && (
         <WebAppSection showSub={webSub} onShowSub={() => setWebSub(true)} />
       )}
@@ -104,11 +105,11 @@ function TabButton({
   return (
     <button
       onClick={onClick}
-      className={`px-4 py-2 rounded-full font-semibold transition ${
+      className={px-4 py-2 rounded-full font-semibold transition ${
         active
           ? 'bg-blue-600 text-white'
           : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-blue-100 dark:hover:bg-gray-600'
-      }`}
+      }}
     >
       {label}
     </button>
@@ -274,3 +275,40 @@ function CustomGPTsSection({
     </div>
   );
 }
+
+[{
+	"resource": "/c:/Users/jyora/Desktop/Program/Projects/nextgakushulinks/app/page.tsx",
+	"owner": "typescript",
+	"code": "2739",
+	"severity": 8,
+	"message": "型 '{}' には 型 '{ showWriting: boolean; onShowWriting: () => void; }' からの次のプロパティがありません: showWriting, onShowWriting",
+	"source": "ts",
+	"startLineNumber": 28,
+	"startColumn": 27,
+	"endLineNumber": 28,
+	"endColumn": 44
+},{
+	"resource": "/c:/Users/jyora/Desktop/Program/Projects/nextgakushulinks/app/globals.css",
+	"owner": "_generated_diagnostic_collection_name_#3",
+	"code": "unknownAtRules",
+	"severity": 4,
+	"message": "Unknown at rule @apply",
+	"source": "css",
+	"startLineNumber": 9,
+	"startColumn": 3,
+	"endLineNumber": 9,
+	"endColumn": 9
+},{
+	"resource": "/c:/Users/jyora/Desktop/Program/Projects/nextgakushulinks/app/globals.css",
+	"owner": "_generated_diagnostic_collection_name_#3",
+	"code": "unknownAtRules",
+	"severity": 4,
+	"message": "Unknown at rule @theme",
+	"source": "css",
+	"startLineNumber": 12,
+	"startColumn": 1,
+	"endLineNumber": 12,
+	"endColumn": 7
+}]
+
+

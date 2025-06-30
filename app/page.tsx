@@ -11,7 +11,7 @@ export default function Page() {
     'top' | 'webapp' | 'app' | 'gpts' | 'secret' | 'writing' | 'mikan' | 'dokodemo' | 'youtube'
   >('top');
 
-  const [subTab, setSubTab] = useState<'none' | 'dokodemo' | 'mikan' | 'writing' >('none');
+  const [subTab, setSubTab] = useState<'none' | 'dokodemo' | 'mikan' | 'writing' | 'duolingo'>('none');
 
   return (
     <main className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white p-6 space-y-6">
@@ -44,10 +44,15 @@ export default function Page() {
           <>
             <DownloadSection />
             <div className="flex justify-center gap-4">
-              <Tab lbl="mikan紹介" act={false} onClick={()=>setSubTab('mikan')} />
+              <Tab lbl="mikan紹介" act={false} onClick={() => setSubTab('mikan')} />
+              <Tab lbl="Duolingo紹介" act={false} onClick={() => setSubTab('duolingo')} />
             </div>
           </>
-        ) : subTab==='mikan' && <MikanSection />
+        ) : subTab==='mikan' ? (
+          <MikanSection />
+        ) : subTab==='duolingo' && (
+          <DuolingoSection />
+        )
       )}
 
       {tab==='gpts' && (
@@ -78,20 +83,102 @@ const Tab:FC<{lbl:React.ReactNode; act:boolean; onClick:()=>void}> = ({lbl,act,o
   </button>
 );
 
-const TopSection:FC = () => (
-  <section className="space-y-4">
-    <h1 className="text-2xl font-bold text-center">学習リンク集</h1>
-    <p className="text-center text-sm text-gray-700 dark:text-gray-300">
-      このページは、学習空間旭川エリアでの自立学習をサポートするリンク集です。以下のタブから各カテゴリにアクセスできます。
-    </p>
-    <ul className="list-disc list-inside text-sm text-gray-700 dark:text-gray-300 max-w-xl mx-auto">
-      <li><b>Web教材</b>：英語や理科のウェブ教材にアクセスできます。道リスもここから。</li>
-      <li><b>DLアプリ紹介</b>：mikanなど、スマホで使える学習アプリを紹介しています。</li>
-      <li><b>カスタムGPTs</b>：ChatGPTを使った、英語AIツールにアクセスできます。</li>
-      <li><b>パス付き部屋</b>：暗証が必要な教材にアクセスする専用スペースです。</li>
-      <li><b>公式Youtube</b>：学習空間旭川末広教室・山本のYouTubeチャンネルを紹介しています。</li>
-    </ul>
-  </section>
+const TopSection: FC = () => {
+  const [topSubTab, setTopSubTab] = useState<'none' | 'ranking'>('none');
+
+  return (
+    <section className="space-y-4">
+      <h1 className="text-2xl font-bold text-center">学習リンク集</h1>
+      <p className="text-center text-sm text-gray-700 dark:text-gray-300">
+        このページは、学習空間での自立学習をサポートするリンク集です。以下のタブから各カテゴリにアクセスできます。
+      </p>
+      <ul className="list-disc list-inside text-sm text-gray-700 dark:text-gray-300 max-w-xl mx-auto">
+        <li><b>Web教材</b>：英語や理科のオンライン教材にアクセスできます。</li>
+        <li><b>DLアプリ紹介</b>：mikanやDuolingoなど、スマホで使える学習アプリを紹介しています。</li>
+        <li><b>カスタムGPTs</b>：英文添削や文構造理解、英検Writing練習などのAIツールにアクセスできます。</li>
+        <li><b>パス付き部屋</b>：暗証が必要な配布教材などにアクセスする専用スペースです。</li>
+        <li><b>公式Youtube</b>：学習空間旭川末広教室・山本のYouTubeチャンネルを紹介しています。</li>
+      </ul>
+      <div className="flex justify-center gap-4 pt-4">
+        <Tab
+          lbl="👑アプリランキング👑"
+          act={topSubTab === 'ranking'}
+          onClick={() => setTopSubTab(topSubTab === 'ranking' ? 'none' : 'ranking')}
+        />
+      </div>
+      {topSubTab === 'ranking' && <RenderRankingTables />}
+    </section>
+  );
+};
+
+const RenderRankingTables = () => (
+  <div className="space-y-6">
+    <h2 className="text-xl font-bold text-center mt-8">📊 アプリ学習ランキング（2025年6月）</h2>
+    <h3 className="text-lg font-semibold">mikan 単語学習ポイント</h3>
+    <p className="text-sm text-gray-500">※ 2025年7月以降は <b>mikan</b> と <b>Duolingo</b> の両方でランキングを開催予定です。</p>
+    <div className="overflow-x-auto">
+      <table className="min-w-full text-sm text-left border border-gray-300 dark:border-gray-600">
+        <thead className="bg-gray-100 dark:bg-gray-700">
+          <tr>
+            <th className="px-4 py-2 border">順位</th>
+            <th className="px-4 py-2 border">名前</th>
+            <th className="px-4 py-2 border">教室・学年</th>
+            <th className="px-4 py-2 border">ポイント</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td className="px-4 py-1 border">1</td><td>しょう</td><td>永山/K中2</td><td>4200pt</td></tr>
+          <tr><td className="px-4 py-1 border">2</td><td>ゆきな</td><td>末広/R中1</td><td>3032pt</td></tr>
+          <tr><td className="px-4 py-1 border">3</td><td>じょうたろう</td><td>講師</td><td>1384pt</td></tr>
+          <tr><td className="px-4 py-1 border">4</td><td>しょーた</td><td>永山/S高2</td><td>1270pt</td></tr>
+          <tr><td className="px-4 py-1 border">5</td><td>マッサルー</td><td>末広/(A)T高1</td><td>409pt</td></tr>
+          <tr><td className="px-4 py-1 border">6</td><td>バドプレイヤー</td><td>末広/T高1</td><td>186pt</td></tr>
+          <tr><td className="px-4 py-1 border">7</td><td>プロ猛者player</td><td>末広/K中3</td><td>171pt</td></tr>
+          <tr><td className="px-4 py-1 border">8</td><td>るい</td><td>末広/T中2</td><td>161pt</td></tr>
+          <tr><td className="px-4 py-1 border">9</td><td>えみか</td><td>末広/H中3</td><td>80pt</td></tr>
+          <tr><td className="px-4 py-1 border">10</td><td>はる</td><td>末広/R中3</td><td>10pt</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3 className="text-lg font-semibold mt-6">Duolingo 獲得XPランキング（2025年7月予定）</h3>
+    <p className="text-sm text-gray-500">※ 現在は集計期間外です。7月末から表示予定です。</p>
+    <div className="overflow-x-auto">
+      <table className="min-w-full text-sm text-left border border-gray-300 dark:border-gray-600">
+        <thead className="bg-gray-100 dark:bg-gray-700">
+          <tr>
+            <th className="px-4 py-2 border">順位</th>
+            <th className="px-4 py-2 border">名前</th>
+            <th className="px-4 py-2 border">教室・学年</th>
+            <th className="px-4 py-2 border">XP</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td className="px-4 py-2 border text-center" colSpan={4}>Coming soon...</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3 className="text-lg font-semibold mt-6">🏆 毎月のトップ学習者一覧</h3>
+    <div className="overflow-x-auto">
+      <table className="min-w-full text-sm text-left border border-gray-300 dark:border-gray-600">
+        <thead className="bg-gray-100 dark:bg-gray-700">
+          <tr>
+            <th className="px-4 py-2 border">月</th>
+            <th className="px-4 py-2 border">アプリ</th>
+            <th className="px-4 py-2 border">名前</th>
+            <th className="px-4 py-2 border">教室・学年</th>
+            <th className="px-4 py-2 border">スコア</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td className="px-4 py-1 border">2025年4月</td><td>mikan</td><td>しょーた</td><td>永山/S高2</td><td>4210pt</td></tr>
+          <tr><td className="px-4 py-1 border">2025年5月</td><td>mikan</td><td>しょーた</td><td>永山/S高2</td><td>21887pt</td></tr>
+          <tr><td className="px-4 py-1 border">2025年6月</td><td>mikan</td><td>しょう</td><td>永山/K中2</td><td>4200pt</td></tr>
+          <tr><td className="px-4 py-1 border">2025年7月</td><td>mikan</td><td>（記録予定）</td><td>（教室・学年）</td><td>（スコア）</td></tr>
+          <tr><td className="px-4 py-1 border">2025年7月</td><td>Duolingo</td><td>（記録予定）</td><td>（教室・学年）</td><td>（XP）</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 );
 
 const WebAppSection:FC = () => (
@@ -110,7 +197,7 @@ const DokodemoSection:FC = () => (
   <section className="space-y-4">
     <h2 className="text-2xl font-bold text-center">スマホでどこでも</h2>
     <p className="text-center">一番下のリンクから、それぞれの学年にアクセスできます。</p>
-    <ul className="list-none space-y-1 text-center underline text-blue-600">
+    <ul className="list-disc list-inside space-y-1 text-center underline text-blue-600">
       <li><a href="https://cds.chart.co.jp/books/7hw2lr6dfr" target="_blank">中1</a></li>
       <li><a href="https://cds.chart.co.jp/books/3d7euz10g6" target="_blank">中2</a></li>
       <li><a href="https://cds.chart.co.jp/books/z9iq37wnhl" target="_blank">中3</a></li>
@@ -137,11 +224,28 @@ const MikanSection:FC = () => (
         <li>おすすめ教材は <b>中学英単語1000</b></li>
         <li>最終的には <b>カード学習</b> モードに挑戦！</li>
         <li>ランキング設定 → 高校名「旭川東高校」、名前末尾に「(学)」を付けて参加</li>
+        <li>毎月の学習空間ランキングとして反映されます！</li>
       </ul>
     </div>
-    <ul className="text-center underline text-blue-600 space-y-1">
+    <ul className="list-disc list-inside text-center underline text-blue-600 space-y-1">
       <li><a href="https://app.adjust.com/1btj6fqy" target="_blank">mikan DLリンク</a></li>
       <li><a href="https://mikan.com/" target="_blank">公式サイト</a></li>
+    </ul>
+  </section>
+);
+
+const DuolingoSection:FC = () => (
+  <section className="space-y-6">
+    <h2 className="text-2xl font-bold text-center">Duolingo紹介</h2>
+    <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow space-y-3 text-sm leading-relaxed">
+      <p><b>Duolingo</b>は1日3分〜5分でできる英語学習ツールです。読む・書く・話す・聴くの4技能をバランスよく練習できます。</p>
+      <p>問題の種類が豊富で、楽しく継続しやすいのが特長です。習得には時間がかかりますが、コツコツ型の学習に向いています。</p>
+      <p>学習空間の <b>Duolingo for School</b> に登録すると、山本側から学習記録（連続日数やXP）が確認でき、<b>学習空間ランキング</b>にも反映されます。</p>
+      <p className="text-red-500">※ 参加するとフレンド機能は停止し、アカウントは非公開になります。ただしデータ（継続日数など）が消えることはありません。</p>
+    </div>
+    <ul className="list-disc list-inside text-center underline text-blue-600 space-y-1">
+      <li><a href="https://ja.duolingo.com/" target="_blank">Duolingo DLページ</a></li>
+      <li><a href="https://www.duolingo.com/classroom/vfcxjq" target="_blank">学習空間Duolingo for School</a></li>
     </ul>
   </section>
 );
@@ -205,11 +309,11 @@ const SecretSection:FC = () => {
 
 };
 
-  const YoutubeSection:FC = () => (
-  <section className="space-y-4 text-center">
-    <h2 className="text-2xl font-bold">公式Youtube</h2>
-    <a className="link text-blue-600 underline" href="https://youtube.com/@asahikawasuehiro-gakushu-kukan?si=o3mcXUx_UBRZwx0v" target="_blank">
-      学習空間旭川末広教室・山本
-    </a>
-  </section>
-  );
+const YoutubeSection:FC = () => (
+<section className="space-y-4 text-center">
+  <h2 className="text-2xl font-bold">公式Youtube</h2>
+  <a className="link text-blue-600 underline" href="https://youtube.com/@asahikawasuehiro-gakushu-kukan?si=o3mcXUx_UBRZwx0v" target="_blank">
+    学習空間旭川末広教室・山本
+  </a>
+</section>
+);
