@@ -115,7 +115,7 @@ const RenderRankingTables = () => (
   <div className="space-y-6">
     <h2 className="text-xl font-bold text-center mt-8">アプリ学習ランキング</h2>
     <h3 className="text-lg font-semibold text-center mt-8">（2025年6月）</h3>
-    <h3 className="text-lg font-semibold">🍊 mikan 単語学習数ランキング</h3>
+    <h3 className="text-lg font-semibold">🍊 mikan 単語学習数ランキング TOP10</h3>
     <p className="text-sm text-gray-500">※ 2025年7月以降は <b>mikan</b> と <b>Duolingo</b> の両方でランキングを開催予定です。</p>
     <div className="overflow-x-auto">
       <table className="min-w-full text-sm text-left border border-gray-300 dark:border-gray-600">
@@ -141,8 +141,8 @@ const RenderRankingTables = () => (
         </tbody>
       </table>
     </div>
-    <h3 className="text-lg font-semibold mt-6">🦉 Duolingo 獲得XPランキング</h3>
-    <p className="text-sm text-gray-500">※ 現在は集計期間外です。7月末から表示予定です。</p>
+    <h3 className="text-lg font-semibold mt-6">🦉 Duolingo 獲得XPランキング TOP10</h3>
+    <p className="text-sm text-gray-500">※ 7月末から表示予定です。</p>
     <div className="overflow-x-auto">
       <table className="min-w-full text-sm text-left border border-gray-300 dark:border-gray-600">
         <thead className="bg-gray-100 dark:bg-gray-700">
@@ -300,6 +300,7 @@ const SecretSection:FC = () => {
           <li><a href="https://drive.google.com/file/d/1sxURRQK-uJm9hFgnrcBha0Y8PjeqYLfa/view?usp=sharing" target="_blank">中2数学【解答】</a></li>
           <li><a href="https://drive.google.com/file/d/1Xk33o_CXxI5-SdW4YhAPJXa4s4Uk6gBW/view?usp=sharing" target="_blank">中1数学【本編】</a></li>
           <li><a href="https://drive.google.com/file/d/1hKWSn3u9Rr0CSO-clgI5oInEIrXM9gQE/view?usp=sharing" target="_blank">中1数学【解答】</a></li>
+          <li><a href="https://flickkeyboardtest.vercel.app/" target="_blank">Flickテストサイト</a></li>
         </ul>
       )}
     </section>
