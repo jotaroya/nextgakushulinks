@@ -186,6 +186,7 @@ const WebAppSection:FC = () => (
     <h2 className="text-2xl font-bold text-center">Web教材</h2>
     <ul className="list-disc list-inside space-y-1 underline text-blue-600 text-center">
       <li><a href="https://doulis.netlify.app/" target="_blank">道リス (英リスニング)</a></li>
+      <li><a href="https://gtr.gakushu-kukan.co.jp/" target="_blank">Gトレ</a></li>
       <li><a href="https://seishinplus.net/rika/qcheck/qch/menu_3.html" target="_blank">Qチェック (理科)</a></li>
       <li><a href="https://www.v-ist.com/game/index.html" target="_blank">4択クイズ (ヴィスト)</a></li>
       <li><a href="https://app.meijitosho.co.jp/voca_w/#/home" target="_blank">ボキャリスチェック (旧教科書)</a></li>
