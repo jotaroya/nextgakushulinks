@@ -2,16 +2,16 @@
 
 import { useState, FC } from 'react';
 import {
-  Home, Phone, Download, Lightbulb, PenLine, Lock, Brain,
+  Home, Phone, Download, Lightbulb, PenLine, Lock, Brain, PlayCircle
 } from 'lucide-react';
 import './globals.css';
 
 export default function Page() {
   const [tab, setTab] = useState<
-    'top' | 'webapp' | 'app' | 'gpts' | 'secret' | 'writing' | 'mikan' | 'dokodemo'
+    'top' | 'webapp' | 'app' | 'gpts' | 'secret' | 'writing' | 'mikan' | 'dokodemo' | 'youtube'
   >('top');
 
-  const [subTab, setSubTab] = useState<'none' | 'dokodemo' | 'mikan' | 'writing'>('none');
+  const [subTab, setSubTab] = useState<'none' | 'dokodemo' | 'mikan' | 'writing' >('none');
 
   return (
     <main className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white p-6 space-y-6">
@@ -20,11 +20,13 @@ export default function Page() {
         <Tab lbl={<><Lightbulb size={16}/> Web教材</>}     act={tab==='webapp'}   onClick={()=>{setTab('webapp'); setSubTab('none');}} />
         <Tab lbl={<><Download size={16}/> DLアプリ紹介</>} act={tab==='app'}     onClick={()=>{setTab('app'); setSubTab('none');}} />
         <Tab lbl={<><Brain size={16}/> カスタムGPTs</>}    act={tab==='gpts'}    onClick={()=>{setTab('gpts'); setSubTab('none');}} />
+        <Tab lbl={<><PlayCircle size={16}/> 動画</>}    act={tab==='youtube'} onClick={()=>{setTab('youtube'); setSubTab('none');}} />
         <Tab lbl={<><Lock size={16}/> パス付き部屋</>}     act={tab==='secret'}  onClick={()=>{setTab('secret'); setSubTab('none');}} />
       </div>
 
       {tab==='top'      && <TopSection />}
       {tab==='secret'   && <SecretSection />}
+      {tab==='youtube'  && <YoutubeSection />}
 
       {tab==='webapp' && (
         subTab==='none' ? (
@@ -58,6 +60,7 @@ export default function Page() {
           </>
         ) : subTab==='writing' && <WritingSection />
       )}
+
     </main>
   );
 }
@@ -86,6 +89,7 @@ const TopSection:FC = () => (
       <li><b>DLアプリ紹介</b>：mikanなど、スマホで使える学習アプリを紹介しています。</li>
       <li><b>カスタムGPTs</b>：ChatGPTを使った、英語AIツールにアクセスできます。</li>
       <li><b>パス付き部屋</b>：暗証が必要な教材にアクセスする専用スペースです。</li>
+      <li><b>公式Youtube</b>：学習空間旭川末広教室・山本のYouTubeチャンネルを紹介しています。</li>
     </ul>
   </section>
 );
@@ -196,4 +200,16 @@ const SecretSection:FC = () => {
       )}
     </section>
   );
+
+
+
 };
+
+  const YoutubeSection:FC = () => (
+  <section className="space-y-4 text-center">
+    <h2 className="text-2xl font-bold">公式Youtube</h2>
+    <a className="link text-blue-600 underline" href="https://youtube.com/@asahikawasuehiro-gakushu-kukan?si=o3mcXUx_UBRZwx0v" target="_blank">
+      学習空間旭川末広教室・山本
+    </a>
+  </section>
+  );
