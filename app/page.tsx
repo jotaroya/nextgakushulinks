@@ -6,59 +6,62 @@ import {
 } from 'lucide-react';
 import './globals.css';
 
-/* ---------------------------------------------------- */
-/*  ページ本体                                          */
-/* ---------------------------------------------------- */
 export default function Page() {
   const [tab, setTab] = useState<
-    'top' | 'dokodemo' | 'mikan' | 'webapp' | 'writing' | 'secret' | 'app' | 'gpts'
+    'top' | 'webapp' | 'app' | 'gpts' | 'secret' | 'writing' | 'mikan' | 'dokodemo'
   >('top');
 
-  const [webSub,    setWebSub]    = useState(false); // Web教材 → スマホでどこでも
-  const [showWrite, setShowWrite] = useState(false); // GPTs → Writing
+  const [subTab, setSubTab] = useState<'none' | 'dokodemo' | 'mikan' | 'writing'>('none');
 
   return (
     <main className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white p-6 space-y-6">
-      {/* ─── Tabs ───────────────────────────────────── */}
       <div className="flex justify-center gap-4 flex-wrap">
-        <Tab lbl={<><Home size={16}/> トップ</>}          act={tab==='top'}      onClick={()=>setTab('top')} />
-        <Tab lbl={<><Phone size={16}/> スマホでどこでも</>} act={tab==='dokodemo'} onClick={()=>setTab('dokodemo')} />
-        <Tab lbl={<><Brain size={16}/> mikan紹介</>}       act={tab==='mikan'}    onClick={()=>setTab('mikan')} />
-        <Tab lbl={<><Lightbulb size={16}/> Web教材</>}     act={tab==='webapp'}   onClick={()=>setTab('webapp')} />
-        <Tab lbl={<><PenLine size={16}/> Writing GPTs</>}  act={tab==='writing'}  onClick={()=>setTab('writing')} />
-        <Tab lbl={<><Lock size={16}/> パス付き部屋</>}     act={tab==='secret'}  onClick={()=>setTab('secret')} />
-        <Tab lbl={<><Download size={16}/> DLアプリ紹介</>} act={tab==='app'}     onClick={()=>setTab('app')} />
-        <Tab lbl={<><Brain size={16}/> カスタムGPTs</>}    act={tab==='gpts'}    onClick={()=>setTab('gpts')} />
+        <Tab lbl={<><Home size={16}/> トップ</>}          act={tab==='top'}      onClick={()=>{setTab('top'); setSubTab('none');}} />
+        <Tab lbl={<><Lightbulb size={16}/> Web教材</>}     act={tab==='webapp'}   onClick={()=>{setTab('webapp'); setSubTab('none');}} />
+        <Tab lbl={<><Download size={16}/> DLアプリ紹介</>} act={tab==='app'}     onClick={()=>{setTab('app'); setSubTab('none');}} />
+        <Tab lbl={<><Brain size={16}/> カスタムGPTs</>}    act={tab==='gpts'}    onClick={()=>{setTab('gpts'); setSubTab('none');}} />
+        <Tab lbl={<><Lock size={16}/> パス付き部屋</>}     act={tab==='secret'}  onClick={()=>{setTab('secret'); setSubTab('none');}} />
       </div>
 
-      {/* ─── Panels ─────────────────────────────────── */}
       {tab==='top'      && <TopSection />}
-      {tab==='dokodemo' && <DokodemoSection />}
-      {tab==='mikan'    && <MikanSection />}
-      {tab==='writing'  && <WritingSection />}
       {tab==='secret'   && <SecretSection />}
-      {tab==='app'      && <DownloadSection />}
 
       {tab==='webapp' && (
-        <>
-          <WebAppSection showSub={webSub} onShowSub={()=>setWebSub(true)} />
-          {webSub && <DokodemoSection />}
-        </>
+        subTab==='none' ? (
+          <>
+            <WebAppSection />
+            <div className="flex gap-4 justify-center">
+              <Tab lbl="スマホでどこでも" act={false} onClick={()=>setSubTab('dokodemo')} />
+            </div>
+          </>
+        ) : subTab==='dokodemo' && <DokodemoSection />
+      )}
+
+      {tab==='app' && (
+        subTab==='none' ? (
+          <>
+            <DownloadSection />
+            <div className="flex justify-center gap-4">
+              <Tab lbl="mikan紹介" act={false} onClick={()=>setSubTab('mikan')} />
+            </div>
+          </>
+        ) : subTab==='mikan' && <MikanSection />
       )}
 
       {tab==='gpts' && (
-        <>
-          <GPTsSection showWrite={showWrite} onShowWrite={()=>setShowWrite(true)} />
-          {showWrite && <WritingSection />}
-        </>
+        subTab==='none' ? (
+          <>
+            <GPTsSection />
+            <div className="flex justify-center gap-4">
+              <Tab lbl="英検Writing GPTs" act={false} onClick={()=>setSubTab('writing')} />
+            </div>
+          </>
+        ) : subTab==='writing' && <WritingSection />
       )}
     </main>
   );
 }
 
-/* ---------------------------------------------------- */
-/*  共通タブボタン                                      */
-/* ---------------------------------------------------- */
 const Tab:FC<{lbl:React.ReactNode; act:boolean; onClick:()=>void}> = ({lbl,act,onClick}) => (
   <button
     onClick={onClick}
@@ -72,11 +75,31 @@ const Tab:FC<{lbl:React.ReactNode; act:boolean; onClick:()=>void}> = ({lbl,act,o
   </button>
 );
 
-/* ---------------------------------------------------- */
-/*  各セクション（すべて FC で JSX を return）           */
-/* ---------------------------------------------------- */
 const TopSection:FC = () => (
-  <h1 className="text-2xl font-bold text-center">学習リンク集</h1>
+  <section className="space-y-4">
+    <h1 className="text-2xl font-bold text-center">学習リンク集</h1>
+    <p className="text-center text-sm text-gray-700 dark:text-gray-300">
+      このページは、学習空間旭川エリアでの自立学習をサポートするリンク集です。以下のタブから各カテゴリにアクセスできます。
+    </p>
+    <ul className="list-disc list-inside text-sm text-gray-700 dark:text-gray-300 max-w-xl mx-auto">
+      <li><b>Web教材</b>：英語や理科のウェブ教材にアクセスできます。道リスもここから。</li>
+      <li><b>DLアプリ紹介</b>：mikanなど、スマホで使える学習アプリを紹介しています。</li>
+      <li><b>カスタムGPTs</b>：ChatGPTを使った、英語AIツールにアクセスできます。</li>
+      <li><b>パス付き部屋</b>：暗証が必要な教材にアクセスする専用スペースです。</li>
+    </ul>
+  </section>
+);
+
+const WebAppSection:FC = () => (
+  <section className="space-y-4">
+    <h2 className="text-2xl font-bold text-center">Web教材</h2>
+    <ul className="list-disc list-inside space-y-1 underline text-blue-600 text-center">
+      <li><a href="https://doulis.netlify.app/" target="_blank">道リス (英リスニング)</a></li>
+      <li><a href="https://seishinplus.net/rika/qcheck/qch/menu_3.html" target="_blank">Qチェック (理科)</a></li>
+      <li><a href="https://www.v-ist.com/game/index.html" target="_blank">4択クイズ (ヴィスト)</a></li>
+      <li><a href="https://app.meijitosho.co.jp/voca_w/#/home" target="_blank">ボキャリスチェック (旧教科書)</a></li>
+    </ul>
+  </section>
 );
 
 const DokodemoSection:FC = () => (
@@ -91,6 +114,15 @@ const DokodemoSection:FC = () => (
   </section>
 );
 
+const DownloadSection:FC = () => (
+  <section className="space-y-3 text-center">
+    <h2 className="text-2xl font-bold">ダウンロードアプリ紹介</h2>
+    <a className="link" href="https://www.obunsha.co.jp/service/kntg4/" target="_blank">
+      高校入試ターゲットアプリDL（5教科）
+    </a>
+  </section>
+);
+
 const MikanSection:FC = () => (
   <section className="space-y-6">
     <h2 className="text-2xl font-bold text-center">mikan紹介</h2>
@@ -100,7 +132,7 @@ const MikanSection:FC = () => (
         <li>スマホに無料英単語アプリ <b>mikan</b> を入れよう！</li>
         <li>おすすめ教材は <b>中学英単語1000</b></li>
         <li>最終的には <b>カード学習</b> モードに挑戦！</li>
-        <li>ランキング設定&nbsp;→&nbsp;高校名「旭川東高校」、名前末尾に「(学)」を付けて参加</li>
+        <li>ランキング設定 → 高校名「旭川東高校」、名前末尾に「(学)」を付けて参加</li>
       </ul>
     </div>
     <ul className="text-center underline text-blue-600 space-y-1">
@@ -110,16 +142,16 @@ const MikanSection:FC = () => (
   </section>
 );
 
-const WebAppSection:FC<{showSub:boolean; onShowSub:()=>void}> = ({showSub,onShowSub}) => (
-  <section className="space-y-4">
-    <h2 className="text-2xl font-bold text-center">Web教材</h2>
-    <ul className="list-disc list-inside space-y-1 underline text-blue-600">
-      <li><a href="https://doulis.netlify.app/" target="_blank">道リス (英リスニング)</a></li>
-      <li><a href="https://seishinplus.net/rika/qcheck/qch/menu_3.html" target="_blank">Qチェック (理科)</a></li>
-      <li><a href="https://www.v-ist.com/game/index.html" target="_blank">4択クイズ (ヴィスト)</a></li>
-      <li><a href="https://app.meijitosho.co.jp/voca_w/#/home" target="_blank">ボキャリスチェック (旧教科書)</a></li>
-    </ul>
-    <button onClick={onShowSub} className="link">{showSub ? '▼' : '▶'} スマホでどこでも学年選択ページへ</button>
+const GPTsSection:FC = () => (
+  <section className="space-y-3 text-center">
+    <h2 className="text-2xl font-bold">カスタム GPTs ツール</h2>
+    <p className="text-sm text-gray-600 dark:text-gray-400">※ChatGPT アカウント必須</p>
+    <a className="link" href="https://chatgpt.com/g/g-67774b07d6f88191855448c2316fcd0f-ying-yi-tian-xue" target="_blank">
+      英文添削GPTs
+    </a><br/>
+    <a className="link" href="https://chatgpt.com/g/g-6841db5eb71c8191916872e978713f40-ying-wen-gou-zao-wojie-shuo-sitekurerumono" target="_blank">
+      英文構造把握GPTs
+    </a>
   </section>
 );
 
@@ -138,9 +170,10 @@ const WritingSection:FC = () => (
 
 const SecretSection:FC = () => {
   const [pw, setPw] = useState('');
-  const [ok,setOk]  = useState(false);
-  const [err,setErr]= useState('');
-  const check = ()=> pw==='yamamoto' ? (setOk(true),setErr('')) : setErr('パスワードが違います');
+  const [ok, setOk] = useState(false);
+  const [err, setErr] = useState('');
+  const check = () => pw==='yamamoto' ? (setOk(true),setErr('')) : setErr('パスワードが違います');
+
   return (
     <section className="space-y-4">
       <h2 className="text-2xl font-bold text-center">パスワード付きページ</h2>
@@ -164,29 +197,3 @@ const SecretSection:FC = () => {
     </section>
   );
 };
-
-const DownloadSection:FC = () => (
-  <section className="space-y-3 text-center">
-    <h2 className="text-2xl font-bold">ダウンロードアプリ紹介</h2>
-    <a className="link" href="/mikan">▶ mikan特集ページへ</a><br/>
-    <a className="link" href="https://www.obunsha.co.jp/service/kntg4/" target="_blank">
-      高校入試ターゲットアプリDL（5教科）
-    </a>
-  </section>
-);
-
-const GPTsSection:FC<{showWrite:boolean; onShowWrite:()=>void}> = ({showWrite,onShowWrite}) => (
-  <section className="space-y-3 text-center">
-    <h2 className="text-2xl font-bold">カスタム GPTs ツール</h2>
-    <p className="text-sm text-gray-600 dark:text-gray-400">※ChatGPT アカウント必須</p>
-    <a className="link" href="https://chatgpt.com/g/g-67774b07d6f88191855448c2316fcd0f-ying-yi-tian-xue" target="_blank">
-      英文添削GPTs
-    </a><br/>
-    <a className="link" href="https://chatgpt.com/g/g-6841db5eb71c8191916872e978713f40-ying-wen-gou-zao-wojie-shuo-sitekurerumono" target="_blank">
-      英文構造把握GPTs
-    </a><br/>
-    <button className="link" onClick={onShowWrite}>
-      {showWrite ? '▼' : '▶'} 英検Writing練習ページへ
-    </button>
-  </section>
-);
