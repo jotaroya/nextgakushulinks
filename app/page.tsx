@@ -113,8 +113,9 @@ const TopSection: FC = () => {
 
 const RenderRankingTables = () => (
   <div className="space-y-6">
-    <h2 className="text-xl font-bold text-center mt-8">📊 アプリ学習ランキング（2025年6月）</h2>
-    <h3 className="text-lg font-semibold">mikan 単語学習ポイント</h3>
+    <h2 className="text-xl font-bold text-center mt-8">アプリ学習ランキング</h2>
+    <h3 className="text-lg font-semibold text-center mt-8">（2025年6月）</h3>
+    <h3 className="text-lg font-semibold">🍊 mikan 単語学習数ランキング</h3>
     <p className="text-sm text-gray-500">※ 2025年7月以降は <b>mikan</b> と <b>Duolingo</b> の両方でランキングを開催予定です。</p>
     <div className="overflow-x-auto">
       <table className="min-w-full text-sm text-left border border-gray-300 dark:border-gray-600">
@@ -131,7 +132,7 @@ const RenderRankingTables = () => (
           <tr><td className="px-4 py-1 border">2</td><td>ゆきな</td><td>末広/R中1</td><td>3032pt</td></tr>
           <tr><td className="px-4 py-1 border">3</td><td>じょうたろう</td><td>講師</td><td>1384pt</td></tr>
           <tr><td className="px-4 py-1 border">4</td><td>しょーた</td><td>永山/S高2</td><td>1270pt</td></tr>
-          <tr><td className="px-4 py-1 border">5</td><td>マッサルー</td><td>末広/(A)T高1</td><td>409pt</td></tr>
+          <tr><td className="px-4 py-1 border">5</td><td>マッサルー</td><td>末広/T高1</td><td>409pt</td></tr>
           <tr><td className="px-4 py-1 border">6</td><td>バドプレイヤー</td><td>末広/T高1</td><td>186pt</td></tr>
           <tr><td className="px-4 py-1 border">7</td><td>プロ猛者player</td><td>末広/K中3</td><td>171pt</td></tr>
           <tr><td className="px-4 py-1 border">8</td><td>るい</td><td>末広/T中2</td><td>161pt</td></tr>
@@ -140,7 +141,7 @@ const RenderRankingTables = () => (
         </tbody>
       </table>
     </div>
-    <h3 className="text-lg font-semibold mt-6">Duolingo 獲得XPランキング（2025年7月予定）</h3>
+    <h3 className="text-lg font-semibold mt-6">🦉 Duolingo 獲得XPランキング</h3>
     <p className="text-sm text-gray-500">※ 現在は集計期間外です。7月末から表示予定です。</p>
     <div className="overflow-x-auto">
       <table className="min-w-full text-sm text-left border border-gray-300 dark:border-gray-600">
