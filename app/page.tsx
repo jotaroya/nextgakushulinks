@@ -173,8 +173,6 @@ const RenderRankingTables = () => (
           <tr><td className="px-4 py-1 border">2025年4月</td><td>mikan</td><td>しょーた</td><td>永山/S高2</td><td>4210pt</td></tr>
           <tr><td className="px-4 py-1 border">2025年5月</td><td>mikan</td><td>しょーた</td><td>永山/S高2</td><td>21887pt</td></tr>
           <tr><td className="px-4 py-1 border">2025年6月</td><td>mikan</td><td>しょう</td><td>永山/K中2</td><td>4200pt</td></tr>
-          <tr><td className="px-4 py-1 border">2025年7月</td><td>mikan</td><td>（記録予定）</td><td>（教室・学年）</td><td>（スコア）</td></tr>
-          <tr><td className="px-4 py-1 border">2025年7月</td><td>Duolingo</td><td>（記録予定）</td><td>（教室・学年）</td><td>（XP）</td></tr>
         </tbody>
       </table>
     </div>
@@ -189,7 +187,7 @@ const WebAppSection:FC = () => (
       <li><a className="link" href="https://gtr.gakushu-kukan.co.jp/" target="_blank">Gトレ</a></li>
       <li><a className="link" href="https://seishinplus.net/rika/qcheck/qch/menu_3.html" target="_blank">Qチェック (理科)</a></li>
       <li><a className="link" href="https://www.v-ist.com/game/index.html" target="_blank">4択クイズ (ヴィスト)</a></li>
-      <li><a className="link" href="https://app.meijitosho.co.jp/voca_w/#/home" target="_blank">ボキャリスチェック (旧教科書)</a></li>
+      <li><a className="link"href="https://app.meijitosho.co.jp/voca_w/#/home" target="_blank">ボキャリスチェック (旧教科書)</a></li>
     </ul>
   </section>
 );
