@@ -220,6 +220,7 @@ const DownloadSection:FC = () => (
     <a className="link" href="https://app.studyplus.jp/users/a583dd42d14d11e6af9322000b0585f6" target="_blank">
       Studyplus、山本のアカウント（フォローしてね！）
     </a>
+    アプリの下のメニューからさがす→ユーザーをさがす→ユーザーを検索→「🔎」に 山本丈太郎 といれる。都道府県は北海道を選択。
   </section>
 );
 
