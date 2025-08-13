@@ -212,6 +212,12 @@ const DownloadSection:FC = () => (
     <a className="link" href="https://www.obunsha.co.jp/service/kntg4/" target="_blank">
       高校入試ターゲットアプリDL（5教科）
     </a>
+        <a className="link" href="https://app.studyplus.jp/" target="_blank">
+      Studyplus
+    </a>
+    <a className="link" href="https://app.studyplus.jp/users/a583dd42d14d11e6af9322000b0585f6" target="_blank">
+      Studyplus、山本のアカウント（フォローしてね！）
+    </a>
   </section>
 );
 
@@ -241,12 +247,9 @@ const DuolingoSection:FC = () => (
     <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow space-y-3 text-sm leading-relaxed">
       <p><b>Duolingo</b>は1日3分〜5分でできる英語学習ツールです。読む・書く・話す・聴くの4技能をバランスよく練習できます。</p>
       <p>問題の種類が豊富で、楽しく継続しやすいのが特長です。習得には時間がかかりますが、コツコツ型の学習に向いています。</p>
-      <p>学習空間の <b>Duolingo for School</b> に登録すると、山本側から学習記録（連続日数やXP）が確認でき、<b>学習空間ランキング</b>にも反映されます。</p>
-      <p className="text-red-500">※ 参加するとフレンド機能は停止し、アカウントは非公開になります。ただしデータ（継続日数など）が消えることはありません。</p>
     </div>
     <ul className="list-disc list-inside text-center underline text-blue-600 space-y-1">
       <li><a href="https://ja.duolingo.com/" target="_blank">Duolingo DLページ</a></li>
-      <li><a href="https://www.duolingo.com/classroom/vfcxjq" target="_blank">学習空間Duolingo for School</a></li>
     </ul>
   </section>
 );
