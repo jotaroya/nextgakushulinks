@@ -212,9 +212,11 @@ const DownloadSection:FC = () => (
     <a className="link" href="https://www.obunsha.co.jp/service/kntg4/" target="_blank">
       高校入試ターゲットアプリDL（5教科）
     </a>
+    <br />
         <a className="link" href="https://app.studyplus.jp/" target="_blank">
       Studyplus
     </a>
+    <br />
     <a className="link" href="https://app.studyplus.jp/users/a583dd42d14d11e6af9322000b0585f6" target="_blank">
       Studyplus、山本のアカウント（フォローしてね！）
     </a>
