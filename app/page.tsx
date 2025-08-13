@@ -93,7 +93,7 @@ const TopSection: FC = () => {
         このページは、学習空間での自立学習をサポートするリンク集です。以下のタブから各カテゴリにアクセスできます。
       </p>
       <ul className="list-disc list-inside text-sm text-gray-700 dark:text-gray-300 max-w-xl mx-auto">
-        <li><b>Web教材</b>：英語や理科のオンライン教材にアクセスできます。</li>
+        <li><b>Web教材</b>：10番や道リスなど英語や理科のオンライン教材にアクセスできます。</li>
         <li><b>DLアプリ紹介</b>：mikanやDuolingoなど、スマホで使える学習アプリを紹介しています。</li>
         <li><b>カスタムGPTs</b>：英文添削や文構造理解、英検Writing練習などのAIツールにアクセスできます。</li>
         <li><b>パス付き部屋</b>：暗証が必要な配布教材などにアクセスする専用スペースです。</li>
@@ -184,6 +184,7 @@ const WebAppSection:FC = () => (
   <section className="space-y-4">
     <h2 className="text-2xl font-bold text-center">Web教材</h2>
     <ul className="list-disc list-inside space-y-1 underline text-blue-600 text-center">
+      <li><a className="link" href="https://10ban.vercel.app/" target="_blank">リスニング10番勝負</a></li>
       <li><a className="link" href="https://doulis.netlify.app/" target="_blank">道リス (英リスニング)</a></li>
       <li><a className="link" href="https://gtr.gakushu-kukan.co.jp/" target="_blank">Gトレ</a></li>
       <li><a className="link" href="https://seishinplus.net/rika/qcheck/qch/menu_3.html" target="_blank">Qチェック (理科)</a></li>
